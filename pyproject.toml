@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sentiment-analysis-application"
+version = "0.1.0"
+description = ""
+authors = ["Ruoqi Huang <huangruoqi374@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sentiment_analysis_application"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^4.2"
+transformers = "^4.28.1"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
