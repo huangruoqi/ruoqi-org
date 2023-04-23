@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 
 const App = () => {
+  const getCsrfToken = () => {
+    const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+  };
   const [text, setText] = useState('');
 
   const handleChange = (e) => {
@@ -12,10 +16,12 @@ const App = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/submit-text', {
+      const csrfToken = getCsrfToken();
+      const response = await fetch('api/submit-text', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
         },
         body: JSON.stringify({ text }),
       });
@@ -31,7 +37,6 @@ const App = () => {
       console.error('Error:', error);
       alert('Error submitting text');
     }
-
     setText('');
   };
 
