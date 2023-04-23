@@ -5,5 +5,5 @@ migrate:
 	poetry run python -B manage.py makemigrations
 	poetry run python -B manage.py migrate
 
-addadmin:
+admin:
 	poetry run python -B manage.py createsuperuser
