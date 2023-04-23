@@ -1,25 +1,57 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [text, setText] = useState('');
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/submit-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert('Text submitted successfully');
+      } else {
+        alert('Failed to submit text');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error submitting text');
+    }
+
+    setText('');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Text Input Form</h2>
+        <textarea
+          value={text}
+          onChange={handleChange}
+          className="text-input"
+          placeholder="Enter your text paragraph here"
+          rows={6}
+        />
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
+};
 
 export default App;
