@@ -1,9 +1,9 @@
 run:
-	poetry run python manage.py runserver
+	poetry run python -B manage.py runserver
 
 migrate:
-	poetry run python manage.py makemigrations
-	poetry run python manage.py migrate
+	poetry run python -B manage.py makemigrations
+	poetry run python -B manage.py migrate
 
 addadmin:
-	poetry run python manage.py createsuperuser
+	poetry run python -B manage.py createsuperuser
