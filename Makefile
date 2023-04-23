@@ -4,3 +4,6 @@ run:
 migrate:
 	poetry run python manage.py makemigrations
 	poetry run python manage.py migrate
+
+addadmin:
+	poetry run python manage.py createsuperuser
