@@ -4,19 +4,24 @@ import './LineByLineBar.css';
 const LineByLineBar = ({ words, values }) => {
   const getColor = (value) => {
     return value > 0 ? 'green' : value < 0 ? 'red' : 'gray';
-  };
+  }; 
+  const segmentLengths = words.map((e, i)=>e.length); 
+  const sum = segmentLengths.reduce((a, b)=>a+b, 0) + segmentLengths.length-1
+  const ratios = segmentLengths.map((e, i)=>((((i>0&&i<segmentLengths.length-1)?1:0.5)+e)*100)/sum);
+  console.log(sum)
 
   const createGradient = () => {
-    const segmentLengths = words.map((e, i)=>e.length/1.05);
+
+
     let total = 0;
     let gradient = '';
 
     values.forEach((value, index) => {
       const startPos = total;
-      const endPos = startPos + segmentLengths[index];
+      const endPos = startPos + ratios[index];
       const color = getColor(value);
       gradient += `, ${color} ${startPos}%, ${color} ${endPos}%`;
-        total += segmentLengths[index];
+        total += ratios[index];
     });
 
     return `linear-gradient(to right${gradient})`;
@@ -25,13 +30,11 @@ const LineByLineBar = ({ words, values }) => {
   return (
     <div className="line-by-line-bar">
       <div className="words-container">
-        {words.map((word, index) => (
-          <span key={index} className="word">
-            {word}
-          </span>
-        ))}
+        {words.join(' ')}
       </div>
-      <div className="bar" style={{ background: createGradient() }}></div>
+      <div className="child">
+        <div className="bar" style={{ background: createGradient()}}></div>
+      </div>
     </div>
   );
 };

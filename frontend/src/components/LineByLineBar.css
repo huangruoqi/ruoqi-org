@@ -1,26 +1,31 @@
 .line-by-line-bar {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   padding: 1rem 0;
+  align-items: center;
+  justify-content: center;
+
+}
+.line-by-line-bar > div {
+  border: 1px solid;
 }
 
 .words-container {
   display: flex;
   margin-bottom: 0.5rem;
   font-family: 'Courier New', monospace; /* Use monospace font */
+  font-size: 1rem;
 }
 
-.word {
-  white-space: nowrap;
-  flex: 1;
-  text-align: center;
-  margin: 10px;
-
+.child {
+    display: flex;
+    flex: 1;
 }
 
 .bar {
-  width: 100%;
+    flex-grow: 1;
+  width: 0;
   height: 1rem;
   border-radius: 4px;
 }
