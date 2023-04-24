@@ -1,0 +1,26 @@
+.line-by-line-bar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.words-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace; /* Use monospace font */
+}
+
+.word {
+  white-space: nowrap;
+  flex: 1;
+  text-align: center;
+  margin: 10px;
+
+}
+
+.bar {
+  width: 100%;
+  height: 1rem;
+  border-radius: 4px;
+}

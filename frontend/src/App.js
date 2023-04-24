@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import LineByLineBar from './components/LineByLineBar';
 
 const TextDisplay = ({ receivedText }) => {
   return (
@@ -19,6 +20,12 @@ const App = () => {
   };
   const [text, setText] = useState('');
   const [receivedText, setReceivedText] = useState('');
+
+  const [words] = useState([
+    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
+    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
+  ]);
+  const [values] = useState([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0]);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -67,6 +74,7 @@ const App = () => {
         </button>
       </form>
       <TextDisplay receivedText={receivedText} />
+      <LineByLineBar words={words} values={values} />
     </div>
   );
 };
