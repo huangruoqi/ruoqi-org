@@ -19,8 +19,17 @@ const LineByLineBar = ({ words, values }) => {
     values.forEach((value, index) => {
       const startPos = total;
       const endPos = startPos + ratios[index];
+      const midPos = (startPos + endPos)/2;
       const color = getColor(value);
-      gradient += `, ${color} ${startPos}%, ${color} ${endPos}%`;
+      if (index === 0) {
+        gradient += `, ${color} ${startPos}%, ${color} ${midPos}%`;
+      } else {
+        gradient += `, ${color} ${midPos}%`;
+      }
+
+      if (index === words.length - 1) {
+        gradient += `, ${color} ${endPos}%`;
+      }
         total += ratios[index];
     });
 
