@@ -7,19 +7,24 @@ from transformers import pipeline
 
 sentiment_pipeline = pipeline("sentiment-analysis")
 
-@api_view(['POST'])
+
+@api_view(["POST"])
 def submit_text(request):
-    if request.method == 'POST':
-        text = json.loads(request.body).get('text', None)
+    if request.method == "POST":
+        text = json.loads(request.body).get("text", None)
 
         if text:
-            response = {'success': True, 'message': 'Text received: {}'.format(text), 'sentiment':sentiment_pipeline([text])}
+            response = {
+                "success": True,
+                "message": "Text received: {}".format(text),
+                "sentiment": sentiment_pipeline([text]),
+            }
         else:
-            response = {'success': False, 'message': 'No text received'}
+            response = {"success": False, "message": "No text received"}
 
         return JsonResponse(response)
     else:
-        return JsonResponse({'success': False, 'message': 'Invalid request method'})
+        return JsonResponse({"success": False, "message": "Invalid request method"})
 
 
 urlpatterns = [

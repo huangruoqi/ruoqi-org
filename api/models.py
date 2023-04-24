@@ -2,15 +2,15 @@ from django.db import models
 import string
 import random
 
+
 def generate_unique_code():
     length = 6
     code = None
     while True:
-        code = ''.join(random.choices(string.ascii_uppercase, k=6))
+        code = "".join(random.choices(string.ascii_uppercase, k=6))
         if Room.objects.filter(code=code).count() == 0:
             break
     return code
-
 
 
 class Room(models.Model):
