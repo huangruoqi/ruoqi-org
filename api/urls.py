@@ -7,7 +7,6 @@ from transformers import pipeline
 
 sentiment_pipeline = pipeline("sentiment-analysis")
 
-
 @api_view(["POST"])
 def submit_text(request):
     if request.method == "POST":
