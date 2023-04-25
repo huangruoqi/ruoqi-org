@@ -21,11 +21,19 @@ const App = () => {
   const [text, setText] = useState('');
   const [receivedText, setReceivedText] = useState('');
 
-  const [words] = useState([
+  const [lines] = useState([[
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
+  ],
+  [
+    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
+    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
+  ]]
+  );
+  const [values] = useState([
+    [1, 0.1, 0.2, 0.2, 0.3, 0.1, 0.2, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0],
+    [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0],
   ]);
-  const [values] = useState([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0]);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -74,7 +82,11 @@ const App = () => {
         </button>
       </form>
       <TextDisplay receivedText={receivedText} />
-      <LineByLineBar words={words} values={values} />
+      {
+      lines.map((e, i) =>
+        <LineByLineBar words={e} values={values[i]} />
+      )
+      }
     </div>
   );
 };
