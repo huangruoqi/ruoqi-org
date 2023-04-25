@@ -4,7 +4,7 @@ setup:
 
 run:
 	cd frontend ; npm run build
-	poetry run python -B manage.py runserver 
+	poetry run python -B manage.py runserver 8080
 
 migrate:
 	poetry run python -B manage.py makemigrations
