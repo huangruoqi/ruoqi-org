@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import LineByLineBar from './components/LineByLineBar';
 
+const MAX_LINE_LENGTH = 80
+
 const TextDisplay = ({ receivedText }) => {
   return (
     <div className="text-display">
@@ -12,6 +14,35 @@ const TextDisplay = ({ receivedText }) => {
     </div>
   );
 };
+function getAnalysis(words, values) {
+  const analysis = {lines: [], values: []}
+  const length = words.length
+  let index = 0;
+  let current = 0;
+  let tempWords = []
+  let tempValues = []
+  while (index < length) {
+    const word = words[index]
+    if (current + word.length > MAX_LINE_LENGTH) {
+      analysis.lines.push(tempWords)
+      analysis.values.push(tempValues)
+      tempWords = []
+      tempValues = []
+      current = 0
+    }
+    else {
+      tempWords.push(word)
+      tempValues.push(values[index])
+      current += word.length + 1
+      index++;
+    }
+  }
+  if (tempWords.length > 0) {
+    analysis.lines.push(tempWords)
+    analysis.values.push(tempValues)
+  }
+  return analysis
+}
 
 const App = () => {
   const getCsrfToken = () => {
@@ -21,19 +52,19 @@ const App = () => {
   const [text, setText] = useState('');
   const [receivedText, setReceivedText] = useState('');
 
-  const [lines] = useState([[
+  const l = [
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-  ],
-  [
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
     "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-  ]]
-  );
-  const [values] = useState([
-    [1, 0.1, 0.2, 0.2, 0.3, 0.1, 0.2, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0],
-    [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0],
-  ]);
+  ]
+  const v = [
+    1, 0.1, 0.2, 0.2, 0.3, 0.1, 0.2, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0,
+    1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0
+  ]
+
+  // const [analysis, setAnalysis] = useState({lines: [], values: []});
+  const [analysis, setAnalysis] = useState(getAnalysis(l,v));
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -56,6 +87,7 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         setReceivedText(JSON.stringify(data.sentiment));
+        setAnalysis(getAnalysis(l, v))
       } else {
         alert('Failed to submit text');
       }
@@ -82,11 +114,11 @@ const App = () => {
         </button>
       </form>
       <TextDisplay receivedText={receivedText} />
-      {
-      lines.map((e, i) =>
-        <LineByLineBar words={e} values={values[i]} />
-      )
-      }
+      <div className='lines'>
+      {analysis.lines.map((e, i) =>
+        <LineByLineBar words={e} values={analysis.values[i]} />
+      )}
+      </div>
     </div>
   );
 };

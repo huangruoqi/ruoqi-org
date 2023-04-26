@@ -10,7 +10,7 @@ const LineByLineBar = ({ words, values }) => {
   const segmentLengths = words.map((e, i)=>e.length); 
   const sum = segmentLengths.reduce((a, b)=>a+b, 0) + segmentLengths.length-1
   const ratios = segmentLengths.map((e, i)=>((((i>0&&i<segmentLengths.length-1)?1:0.5)+e)*100)/sum);
-  console.log(sum)
+  console.table(words)
 
   const createGradient = () => {
 
@@ -42,9 +42,9 @@ const LineByLineBar = ({ words, values }) => {
     <div className="line-by-line-bar">
       <div className="words-container">
         {words.join(' ')}
-      </div>
-      <div className="child">
-        <div className="bar" style={{ background: createGradient()}}></div>
+        <div className="child">
+          <div className="bar" style={{ background: createGradient()}}></div>
+        </div>
       </div>
     </div>
   );

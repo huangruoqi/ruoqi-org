@@ -1,28 +1,25 @@
 .line-by-line-bar {
-  display: inline-block;
+  display:inline-block;
   flex-direction: column;
-  /* width: 100%; */
   padding: 1rem 0;
   align-items: center;
   justify-content: center;
-
 }
 
 .words-container {
-  display: flex;
-  margin-bottom: 0.5rem;
+  display: inline-block;
   font-family: 'Courier New', monospace; /* Use monospace font */
   font-size: 1rem;
-  color:rgb(255, 252, 252);
 }
 
 .child {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
+  margin-top: 0.5rem;
 }
 
 .bar {
-    flex-grow: 1;
+  flex-grow: 1;
   width: 0;
   height: 1rem;
   border-radius: 4px;

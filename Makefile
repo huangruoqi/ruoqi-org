@@ -3,12 +3,15 @@ setup:
 	poetry install
 
 run:
-	cd frontend ; npm run build
-	poetry run python -B manage.py runserver 8080
+	cd frontend & npm run build
+	poetry run python manage.py runserver 8000
+
+dev:
+	cd frontend & npm start
 
 migrate:
-	poetry run python -B manage.py makemigrations
-	poetry run python -B manage.py migrate
+	poetry run python manage.py makemigrations
+	poetry run python manage.py migrate
 
-addadmin:
-	poetry run python -B manage.py createsuperuser
+admin:
+	poetry run python manage.py createsuperuser
