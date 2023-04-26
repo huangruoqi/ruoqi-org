@@ -27,7 +27,9 @@ git clone https://github.com/huangruoqi/sentiment-analysis-application.git
 cd sentiment-analysis-application
 python3 -m pip install poetry
 make setup
-make run
+
+make run &> /dev/null &
+disown -h
 ```
 To kill process
 ```
