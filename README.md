@@ -29,7 +29,7 @@ python3 -m pip install poetry
 make setup
 
 make run &> /dev/null &
-disown -h
+disown
 ```
 To kill process
 ```
