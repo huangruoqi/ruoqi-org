@@ -3,7 +3,7 @@ import './LineByLineBar.css';
 
 const LineByLineBar = ({ words, values }) => {
   const getColor = (value) => {
-    return `rgb(230, ${value*200}, ${value*200})`
+    return `rgb(230, ${value*230}, ${value*230})`
     // return value > 0 ? 'green' : value < 0 ? 'red' : 'gray';
     
   }; 

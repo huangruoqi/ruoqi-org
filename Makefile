@@ -3,7 +3,7 @@ setup:
 	poetry install
 
 run:
-	cd frontend & npm run build
+	cd frontend ; npm run build
 	poetry run python manage.py runserver 8080
 
 dev:

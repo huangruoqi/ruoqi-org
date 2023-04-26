@@ -52,19 +52,7 @@ const App = () => {
   const [text, setText] = useState('');
   const [receivedText, setReceivedText] = useState('');
 
-  const l = [
-    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-    "This", "is", "an", "example", "paragraph", "with", "positive", "and", "negative", "values",
-  ]
-  const v = [
-    1, 0.1, 0.2, 0.2, 0.3, 0.1, 0.2, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0,
-    1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, 0
-  ]
-
-  // const [analysis, setAnalysis] = useState({lines: [], values: []});
-  const [analysis, setAnalysis] = useState(getAnalysis(l,v));
+  const [analysis, setAnalysis] = useState({lines: [], values: []});
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -87,7 +75,7 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         setReceivedText(JSON.stringify(data.sentiment));
-        setAnalysis(getAnalysis(l, v))
+        setAnalysis(getAnalysis(data.words, data.values))
       } else {
         alert('Failed to submit text');
       }
