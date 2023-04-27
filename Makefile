@@ -1,4 +1,5 @@
 setup:
+	git pull
 	cd sentiment_analysis/frontend ; npm install
 	poetry install
 
