@@ -1,11 +1,20 @@
 import React from 'react';
 import './LineByLineBar.css';
 
+function clamp(a, b, c, d, e) {
+  const v = (a - b) / (c - b) * (e - d) + d
+  return Math.max(d, Math.min(e, v))
+}
+
 const LineByLineBar = ({ words, values }) => {
   const getColor = (value) => {
-    return `rgb(230, ${value*230}, ${value*230})`
-    // return value > 0 ? 'green' : value < 0 ? 'red' : 'gray';
-    
+    const convert = (v) => clamp(Math.log(v),-8, -1, 0, 1)
+    if (value < 1)
+      return `rgb(230, ${convert(1-value)*230}, ${convert(1-value)*230})`
+    else if (value < 2)
+      return `rgb(230, 230, ${convert(2-value)*230})`
+    else
+      return `rgb(${convert(3-value)*230}, 230, ${convert(3-value)*230})`
   }; 
   const segmentLengths = words.map((e, i)=>e.length); 
   const sum = segmentLengths.reduce((a, b)=>a+b, 0) + segmentLengths.length-1

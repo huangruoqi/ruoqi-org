@@ -4,15 +4,20 @@ import json
 import math
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from transformers import pipeline
+from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
-sentiment_pipeline = pipeline("sentiment-analysis")
+
+tokenizer = AutoTokenizer.from_pretrained("Seethal/sentiment_analysis_generic_dataset")
+model = AutoModelForSequenceClassification.from_pretrained("Seethal/sentiment_analysis_generic_dataset")
+sentiment_pipeline = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
 
 def process_words(words):
     n = len(words)
     def get_value(*parray):
-        convert = lambda p: p["score"] if p["label"][0]=="P" else 1-p["score"]
-        return math.tanh(sum([convert(p) for p in parray]))
+        # convert = lambda p: p["score"] if p["label"][0]=="P" else 1-p["score"]
+        # return math.tanh(sum([convert(p) for p in parray]))
+        convert = lambda p: int(p["label"][-1])+p["score"]
+        return sum([convert(p) for p in parray])/len(parray)
     def get_segments(length):
         return sentiment_pipeline([
             " ".join(words[max(0, i-length//2):min(n, i+(length+1)//2)])
@@ -27,7 +32,6 @@ def submit_text(request):
         words = text.split()
 
         values = process_words(words)
-        print(values)
 
         if text:
             response = {
