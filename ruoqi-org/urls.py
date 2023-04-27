@@ -1,5 +1,5 @@
 """
-URL configuration for saa project.
+URL configuration for ruoqi-org project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,7 +19,7 @@ from django.urls import path, include
 from .views import index
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include("api.urls")),
     path("", index, name="index"),
+    path("admin/", admin.site.urls),
+    path("sentiment-analysis/", include("sentiment_analysis.urls")),
 ]

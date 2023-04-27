@@ -23,8 +23,8 @@ sudo nginx -t
 sudo service nginx restart
 
 
-git clone https://github.com/huangruoqi/sentiment-analysis-application.git
-cd sentiment-analysis-application
+git clone https://github.com/huangruoqi/sentiment_analysis-application.git
+cd sentiment_analysis-application
 python3 -m pip install poetry
 make setup
 

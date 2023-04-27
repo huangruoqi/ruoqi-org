@@ -3,6 +3,8 @@ from django.urls import path
 import json
 import math
 from django.http import JsonResponse
+from django.views.generic.base import TemplateView
+
 from rest_framework.decorators import api_view
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
@@ -50,5 +52,8 @@ def submit_text(request):
 
 
 urlpatterns = [
+    path('',(TemplateView.as_view(
+        template_name="sentiment_analysis/index.html",
+    )), name='index.html'),
     path("submit-text", submit_text),
 ]

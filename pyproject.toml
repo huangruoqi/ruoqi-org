@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "sentiment-analysis-application"
+name = "sentiment_analysis-application"
 version = "0.1.0"
 description = ""
 authors = ["Ruoqi Huang <huangruoqi374@gmail.com>"]

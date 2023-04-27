@@ -63,7 +63,7 @@ const App = () => {
 
     try {
       const csrfToken = getCsrfToken();
-      const response = await fetch('api/submit-text', {
+      const response = await fetch('submit-text', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
