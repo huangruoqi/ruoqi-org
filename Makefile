@@ -21,3 +21,6 @@ admin:
 server:
 	make run &> /dev/null &
 	disown
+
+list:
+	lsof -i TCP:8080
