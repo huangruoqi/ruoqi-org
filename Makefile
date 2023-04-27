@@ -1,9 +1,9 @@
 setup:
-	cd sentiment_analysis/frontend & npm install
+	cd sentiment_analysis/frontend ; npm install
 	poetry install
 
 run:
-	cd sentiment_analysis/frontend & npm run build
+	cd sentiment_analysis/frontend ; npm run build
 	poetry run python manage.py runserver 8080
 
 dev:
