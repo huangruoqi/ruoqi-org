@@ -20,6 +20,7 @@ admin:
 
 server:
 	poetry run python manage.py runserver 8080 &> /dev/null &
+	echo
 
 list:
 	lsof -i TCP:8080
