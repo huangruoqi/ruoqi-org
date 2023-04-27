@@ -3,7 +3,7 @@ setup:
 	poetry install
 
 build:
-	cd sentiment_analysis/frontend ; npm run build
+	cd sentiment_analysis/frontend & npm run build
 	poetry run python build_utils.py
 run:
 	poetry run python manage.py runserver 8080
@@ -17,3 +17,7 @@ migrate:
 
 admin:
 	poetry run python manage.py createsuperuser
+
+server:
+	make run &> /dev/null &
+	disown
