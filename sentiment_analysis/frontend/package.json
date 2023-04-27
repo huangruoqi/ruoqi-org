@@ -14,7 +14,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "rimraf ../../static/sentiment_analysis & move build ../../static/sentiment_analysis",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,7 +36,5 @@
     ]
   },
   "devDependencies": {
-    "move-cli": "^2.0.0",
-    "rimraf": "^5.0.0"
   }
 }
