@@ -19,7 +19,7 @@ admin:
 	poetry run python manage.py createsuperuser
 
 server:
-	make run &> /dev/null &
+	poetry run python manage.py runserver 8080 &> /dev/null &
 
 list:
 	lsof -i TCP:8080
