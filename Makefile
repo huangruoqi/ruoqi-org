@@ -1,5 +1,4 @@
 setup:
-	git pull
 	cd sentiment_analysis/frontend ; npm install
 	poetry install
 
@@ -20,5 +19,5 @@ admin:
 	poetry run python manage.py createsuperuser
 
 server:
-	poetry run python manage.py runserver 8080 &> /dev/null &
+	make run &> /dev/null &
 	disown
