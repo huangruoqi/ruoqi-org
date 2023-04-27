@@ -19,7 +19,7 @@ admin:
 	poetry run python manage.py createsuperuser
 
 server:
-	poetry run python manage.py runserver 8080 &> /dev/null &
+	poetry run python manage.py runserver 8080 &> /dev/null 
 	disown -a
 
 list:
