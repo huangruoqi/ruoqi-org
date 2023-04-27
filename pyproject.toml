@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Ruoqi Huang <huangruoqi374@gmail.com>"]
 readme = "README.md"
-packages = [{include = "sentiment_analysis_application"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.8"
