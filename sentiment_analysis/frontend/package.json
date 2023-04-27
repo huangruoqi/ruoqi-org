@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "rimraf ../../static/sentiment_analysis && move build ../../static/sentiment_analysis",
+    "postbuild": "rimraf ../../static/sentiment_analysis & move build ../../static/sentiment_analysis",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
