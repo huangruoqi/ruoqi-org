@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sentiment_analysis.apps.ApiConfig",
+    "home.apps.HomeConfig",
     "rest_framework",
 ]
 

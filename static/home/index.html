@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="static/home/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script
+    src="https://www.jqueryscript.net/demo/jQuery-Plugin-For-Water-Ripple-Animation-ripples/js/jquery.ripples.js"></script>
+  <title>Portfolio</title>
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="main-content">
+    <header class="section sec1 header active" id="home">
+      <p>
+        I'm glad destiny brought you to here.<br />
+        I'm a programmer specializing in software engineering, web technology,
+        and love the brainf*ck programming language.
+      </p>
+      <div class="challenge-container">
+        <div class="challenge-btn">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="challenge">
+          <p>
+            What should programmers print with Brainfuck before adding the
+            language to their resume?
+          </p>
+          <div class="challenge-input">
+            <div class="box-container">
+              <div class="box">
+                <input type="text" placeholder="+-<>[],." />
+                <span></span>
+              </div>
+            </div>
+            <div class="run-btn">
+              <a href="#" class="animated-button12">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <i class="fas fa-play"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>
+        <br />Welcome, keep exploring, maybe you'll find something without
+        error and if you have any questions don't hesitate to reach out.
+      </p>
+    </header>
+    <main>
+      <section class="section sec2 about" id="about">
+        <div class="main-title">
+          <h3>About <span>me</span><span class="bg-text">my stats</span></h3>
+        </div>
+        <div class="about-container">
+          <div class="left-about">
+            <h4>Information About me</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+              labore nihil obcaecati consequatur. Debitis error doloremque,
+              vero eos vel nemo eius voluptatem dicta tenetur modi. <br />
+              <br />
+              La musica delectus dolore fugiat exercitationem a, ipsum quidem
+              quo enim natus accusamus labore dolores nam. Unde. Lorem ipsum
+              dolor sit amet consectetur, adipisicing elit. Harum non
+              necessitatibus deleniti eum soluta.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section sec3 projects" id="project">
+        <div class="main-title">
+          <h3>Portfolio<span class="bg-text">my work</span></h3>
+        </div>
+        <div class="gallery">
+          <p>Here is some of my work that I've done in various programming languages.</p>
+          <div class="portfolios">
+            <div class="portfolio-item">
+              <div class="image">
+                <img src="static/home/assets/port1.jpg" alt="">
+              </div>
+              <div class="hover-items">
+                <h3>Project Source</h3>
+                <div class="icons">
+                  <a href="#" class="icon">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="#" class="icon">
+                    <i class="fab fa-behance"></i>
+                  </a>
+                  <a href="#" class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item">
+              <div class="image">
+                <img src="static/home/assets/port1.jpg" alt="">
+              </div>
+              <div class="hover-items">
+                <h3>Project Source</h3>
+                <div class="icons">
+                  <a href="#" class="icon">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="#" class="icon">
+                    <i class="fab fa-behance"></i>
+                  </a>
+                  <a href="#" class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section sec4 contact" id="contact"></section>
+    </main>
+  </div>
+  <div class="controls">
+    <div class="control control-1 active-btn" data-id="home">
+      <i class="fas fa-home"></i>
+    </div>
+    <div class="control control-2" data-id="about">
+      <i class="fas fa-user"></i>
+    </div>
+    <div class="control control-3" data-id="project">
+      <i class="fas fa-briefcase"></i>
+    </div>
+    <div class="control control-4" data-id="contact">
+      <i class="fas fa-envelope-open"></i>
+    </div>
+  </div>
+  <div class="theme-btn">
+    <i class="fas fa-adjust"></i>
+  </div>
+  <script src="static/home/index.js"></script>
+</body>
+
+</html>
