@@ -24,8 +24,8 @@ server {
     listen [::]:443 ssl;
     server_name <your-domain> www.<your-domain>;
 
-    ssl_certificate /root/.acme.sh/ruoqi.org_ecc/fullchain.cer;
-    ssl_certificate_key /root/.acme.sh/ruoqi.org_ecc/ruoqi.org.key;
+    ssl_certificate <your-path-to-cer>/fullchain.cer;
+    ssl_certificate_key <your-path-to-key>/ruoqi.org.key;
 
     # SSL configuration options
     ssl_protocols TLSv1.2 TLSv1.3;
