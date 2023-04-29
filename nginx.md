@@ -2,9 +2,9 @@ Enter root and download acme
 ```
 sudo bash
 curl https://get.acme.sh | sh
-.acme.sh/acme.sh --register-account --accountemail "youremail@example.com"
+acme.sh --register-account --accountemail "youremail@example.com"
 touch /etc/nginx/conf.d/<your-domain>.conf
-.acme.sh/acme.sh --issue --nginx -d <your-domain> -d www.<your-domain>
+acme.sh --issue --nginx -d <your-domain> -d www.<your-domain>
 ```
 configure nginx `/etc/nginx/sites-available/default`
 ```
