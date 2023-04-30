@@ -9,7 +9,7 @@ run:
 	poetry run python manage.py runserver 8080
 
 dev:
-	cd sentiment_analysis/frontend ; npm start
+	cd sentiment_analysis/frontend & npm start
 
 migrate:
 	poetry run python manage.py makemigrations

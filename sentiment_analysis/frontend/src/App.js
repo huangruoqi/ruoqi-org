@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import LineByLineBar from './components/LineByLineBar';
 
 const MAX_LINE_LENGTH = 80
+const RATE = 0.01
 
 const TextDisplay = ({ receivedText }) => {
   return (
@@ -14,6 +15,7 @@ const TextDisplay = ({ receivedText }) => {
     </div>
   );
 };
+
 function getAnalysis(words, values) {
   const analysis = {lines: [], values: []}
   const length = words.length
@@ -44,12 +46,40 @@ function getAnalysis(words, values) {
   return analysis
 }
 
+
 const App = () => {
+  function update_progress_fake(current, rate) {
+    return current + (1-current)/((current+0.01)*100) * rate
+  }
+  function update_progress_done(current, rate) {
+    const result = current + rate
+    if (result >= 1) {
+      setPS(0)
+      return 1
+    }
+    return result
+  }
   const getCsrfToken = () => {
     const cookieValue = document.cookie.match('(^|;)\\s*csrftoken\\s*=\\s*([^;]+)');
     return cookieValue ? cookieValue.pop() : '';
   };
   const [text, setText] = useState('');
+  const [value, setValue] = useState(0);
+  const [progress_status, setPS] = useState(0)
+  useEffect(()=> {
+    const id = setInterval(() => {
+      if (progress_status>0) {
+        if (progress_status === 1) {
+          setValue(v=>update_progress_fake(v, RATE))
+        }
+        else {
+          setValue(v=>update_progress_done(v, RATE))
+        }
+      }
+    }, 16)
+    return () => clearInterval(id)
+  }, [progress_status])
+  
   const [receivedText, setReceivedText] = useState('');
 
   const [analysis, setAnalysis] = useState({lines: [], values: []});
@@ -88,6 +118,8 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1>{value}</h1>
+      <button onClick={()=>setPS(2)}>Done</button>
       <form onSubmit={handleSubmit} className="form">
         <h2>Sentiment Analysis</h2>
         <textarea
