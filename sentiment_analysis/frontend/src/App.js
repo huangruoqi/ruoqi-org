@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import LineByLineBar from './components/LineByLineBar';
+import DonutProgressBar from './components/DonutProgressBar';
 
 const MAX_LINE_LENGTH = 80
 const RATE = 0.01
 
-const TextDisplay = ({ receivedText }) => {
+const TextDisplay = ({ progress_status, progress_value, receivedText }) => {
   return (
     <div className="text-display">
       <h3>Score</h3>
-      <div className="text-container">
-        <pre>{receivedText || 'No text received yet.'}</pre>
-      </div>
+      {progress_status>0?
+        <div className="progress-container">
+          <DonutProgressBar 
+          progress={progress_value}
+          progressColor = {progress_status===1 ? '#3f51b5' : '#34df34'}
+          />
+        </div>
+        :
+        <div className="text-container">
+          <pre>{receivedText || 'No text received yet.'}</pre>
+        </div>
+      }
     </div>
   );
 };
@@ -53,9 +63,12 @@ const App = () => {
   }
   function update_progress_done(current, rate) {
     const result = current + rate
-    if (result >= 1) {
+    if (result >= 2) {
       setPS(0)
-      return 1
+      return 0
+    }
+    if (result >= 1) {
+      return result+rate
     }
     return result
   }
@@ -64,7 +77,7 @@ const App = () => {
     return cookieValue ? cookieValue.pop() : '';
   };
   const [text, setText] = useState('');
-  const [value, setValue] = useState(0);
+  const [progress_value, setValue] = useState(0);
   const [progress_status, setPS] = useState(0)
   useEffect(()=> {
     const id = setInterval(() => {
@@ -92,6 +105,7 @@ const App = () => {
     e.preventDefault();
 
     try {
+      setPS(1)
       const csrfToken = getCsrfToken();
       const response = await fetch('submit-text', {
         method: 'POST',
@@ -106,6 +120,7 @@ const App = () => {
         const data = await response.json();
         setReceivedText(JSON.stringify(data.sentiment));
         setAnalysis(getAnalysis(data.words, data.values))
+        setPS(2)
       } else {
         alert('Failed to submit text');
       }
@@ -118,8 +133,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>{value}</h1>
-      <button onClick={()=>setPS(2)}>Done</button>
       <form onSubmit={handleSubmit} className="form">
         <h2>Sentiment Analysis</h2>
         <textarea
@@ -133,11 +146,13 @@ const App = () => {
           Submit
         </button>
       </form>
-      <TextDisplay receivedText={receivedText} />
+      <TextDisplay receivedText={receivedText} progress_status={progress_status} progress_value={progress_value} />
       <div className='lines'>
-      {analysis.lines.map((e, i) =>
+      {progress_status === 0 && analysis.lines.map((e, i) =>
         <LineByLineBar words={e} values={analysis.values[i]} />
       )}
+      <div>
+      </div>
       </div>
     </div>
   );

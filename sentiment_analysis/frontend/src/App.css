@@ -122,6 +122,12 @@
   font-family: inherit;
   font-size: 1rem;
 }
+.progress-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
 
 .lines {
   display: flex;
