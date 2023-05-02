@@ -30,7 +30,7 @@ def process_words(words):
 @api_view(["POST"])
 def submit_text(request):
     if request.method == "POST":
-        text = json.loads(request.body).get("text", None)
+        text = request.data.get("text", None)
         words = text.split()
 
         values = process_words(words)
