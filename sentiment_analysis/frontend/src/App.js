@@ -108,7 +108,9 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (text.trim().length===0) {
+      return
+    }
     try {
       setPS(1)
       const csrfToken = getCsrfToken();
@@ -124,7 +126,6 @@ const App = () => {
       if (response.ok) {
         const data = await response.json();
         const t = data.sentiment[0]["label"][6]
-        console.log(t)
         setLabel(t);
         setAnalysis(getAnalysis(data.words, data.values))
         setPS(2)
