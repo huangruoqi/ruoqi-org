@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { ReactComponent as Happy } from './img/happy.svg';
+import { ReactComponent as Sad } from './img/sad.svg';
+import { ReactComponent as Neutral } from './img/neutral.svg';
 import LineByLineBar from './components/LineByLineBar';
 import DonutProgressBar from './components/DonutProgressBar';
 
 const MAX_LINE_LENGTH = 80
 const RATE = 0.01
 
-const TextDisplay = ({ progress_status, progress_value, receivedText }) => {
+const TextDisplay = ({ progress_status, progress_value, label }) => {
   return (
     <div className="text-display">
-      <h3>Score</h3>
-      {progress_status>0?
-        <div className="progress-container">
+      <h3>Result</h3>
+        <div className="result-container" style={{background:""}}>
+        {progress_status>0?
           <DonutProgressBar 
           progress={progress_value}
           progressColor = {progress_status===1 ? '#3f51b5' : '#34df34'}
-          />
+          /> :
+          <>
+            {label==="2"&&<Happy width="150" height="150"/>}
+            {label==="1"&&<Neutral width="150" height="150"/>}
+            {label==="0"&&<Sad width="150" height="150"/>}
+          </>
+        }
         </div>
-        :
-        <div className="text-container">
-          <pre>{receivedText || 'No text received yet.'}</pre>
-        </div>
-      }
+
     </div>
   );
 };
@@ -93,7 +98,7 @@ const App = () => {
     return () => clearInterval(id)
   }, [progress_status])
   
-  const [receivedText, setReceivedText] = useState('');
+  const [label, setLabel] = useState('');
 
   const [analysis, setAnalysis] = useState({lines: [], values: []});
 
@@ -118,7 +123,9 @@ const App = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setReceivedText(JSON.stringify(data.sentiment));
+        const t = data.sentiment[0]["label"][6]
+        console.log(t)
+        setLabel(t);
         setAnalysis(getAnalysis(data.words, data.values))
         setPS(2)
       } else {
@@ -146,7 +153,7 @@ const App = () => {
           Submit
         </button>
       </form>
-      <TextDisplay receivedText={receivedText} progress_status={progress_status} progress_value={progress_value} />
+      <TextDisplay label={label} progress_status={progress_status} progress_value={progress_value} />
       <div className='lines'>
       {progress_status === 0 && analysis.lines.map((e, i) =>
         <LineByLineBar words={e} values={analysis.values[i]} />
