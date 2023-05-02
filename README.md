@@ -20,3 +20,6 @@ To kill process
 sudo lsof -i TCP:8080
 kill -9 <pid>
 ```
+
+## Visitor Count
+![Visitor Count](https://profile-counter.glitch.me/huangruoqi/count.svg)
