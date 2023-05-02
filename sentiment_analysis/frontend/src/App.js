@@ -7,7 +7,7 @@ import LineByLineBar from './components/LineByLineBar';
 import DonutProgressBar from './components/DonutProgressBar';
 
 const MAX_LINE_LENGTH = 80
-const RATE = 0.01
+const RATE = 0.015
 
 const TextDisplay = ({ progress_status, progress_value, label }) => {
   return (

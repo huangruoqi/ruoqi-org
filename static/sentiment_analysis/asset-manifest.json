@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/sentiment_analysis/static/css/main.ab8cf4e0.css",
-    "main.js": "/static/sentiment_analysis/static/js/main.c2e21fd7.js",
+    "main.js": "/static/sentiment_analysis/static/js/main.b6108efe.js",
     "static/js/787.cda612ba.chunk.js": "/static/sentiment_analysis/static/js/787.cda612ba.chunk.js",
     "index.html": "/static/sentiment_analysis/index.html",
     "static/media/happy.svg": "/static/sentiment_analysis/static/media/happy.215be4c0e917e76f5333d92f5bf88dc9.svg",
     "static/media/sad.svg": "/static/sentiment_analysis/static/media/sad.19604fe631411418943eaee3f30ef17a.svg",
     "static/media/neutral.svg": "/static/sentiment_analysis/static/media/neutral.695e988ffb83a209d6dfb88bfa5d7d82.svg",
     "main.ab8cf4e0.css.map": "/static/sentiment_analysis/static/css/main.ab8cf4e0.css.map",
-    "main.c2e21fd7.js.map": "/static/sentiment_analysis/static/js/main.c2e21fd7.js.map",
+    "main.b6108efe.js.map": "/static/sentiment_analysis/static/js/main.b6108efe.js.map",
     "787.cda612ba.chunk.js.map": "/static/sentiment_analysis/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ab8cf4e0.css",
-    "static/js/main.c2e21fd7.js"
+    "static/js/main.b6108efe.js"
   ]
 }
