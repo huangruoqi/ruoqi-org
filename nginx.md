@@ -42,6 +42,7 @@ Enter root and download acme
 ```
 sudo bash
 curl https://get.acme.sh | sh
+cd .amce.sh
 acme.sh --register-account --accountemail "youremail@example.com"
 touch /etc/nginx/conf.d/<your-domain>.conf
 acme.sh --issue --nginx -d <your-domain> -d www.<your-domain>
